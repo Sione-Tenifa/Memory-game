@@ -30,6 +30,7 @@ function shuffle(array) {
 
 
 let shuffledColors = shuffle(COLORS);
+
 function createDivsForColors(colorArray) {
   for (let color of colorArray) {
     const newDiv = document.createElement("div");
@@ -45,28 +46,37 @@ function createDivsForColors(colorArray) {
 let cardOne = null;
 let cardTwo = null;
 let cardsFlipped = 0;
-let noClicking = false;
+let twoCardsClicked = false;
 
 function handleCardClick(e) {
+  e.preventDefault()
+   if( twoCardsClicked) return
 
-  let currentCard = e.target;
-  currentCard.style.backgroundColor = currentCard.classList[0];
+  const clickOne = e.target.classList[0]
 
-  if (!cardOne || !cardTwo) {
-    currentCard.classList.add("flipped");
-    cardOne = cardOne || currentCard;
-    cardTwo = currentCard === cardOne ? null : currentCard;
+  if(e.target.classList.contains("clicked")) return
+
+  let card = e.target;
+  card.style.backgroundColor = card.classList.value
+
+  if (cardOne || cardTwo === null) {
+    card.classList.add("clicked");
+    cardOne = cardOne || card;
+    cardTwo = card === cardOne ? null : card;
   }
+  console.log(clickOne)
 
- e.preventDefault()
+  if(cardOne != null && cardTwo != null){
+    console.log("you made it")
+    twoCardsClicked = true
+  }
+  
 
- let card = e.target;
- card.style.backgroundColor = card.classList.value
+ 
 
 
- const clickOne = e.target.classList
 
- console.log(clickOne)
+
  
  
 }
