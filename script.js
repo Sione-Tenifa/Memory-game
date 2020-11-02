@@ -69,6 +69,24 @@ function handleCardClick(e) {
   if(cardOne != null && cardTwo != null){
     console.log("you made it")
     twoCardsClicked = true
+    if(cardOne.className === cardTwo.className){
+      console.log("match")
+
+      cardOne = null;
+      cardTwo = null;
+      twoCardsClicked = false;
+
+    }else{
+      setTimeout(function() {
+        cardOne.style.backgroundColor = "";
+        cardTwo.style.backgroundColor = "";
+        cardOne.classList.remove("clicked");
+        cardTwo.classList.remove("clicked");
+        cardOne = null;
+        cardTwo = null;
+        twoCardsClicked = false;
+      }, 1000);
+    }
   }
   
 
